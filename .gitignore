@@ -1,0 +1,10 @@
+.idea/
+node_modules/
+db-files/*
+!db-files/.gitkeep
+yarn-error.log
+samples/
+.prettierrc
+tryout/
+dist/
+build/
