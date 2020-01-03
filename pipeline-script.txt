@@ -1,0 +1,22 @@
+node {
+    def applicationName = "connect-usage-analytics-api"
+   
+    stage('Clone Repo'){
+        git 'https://github.com/adomadia/node-sample.git'
+    }
+    
+    nodejs('Node:10') {
+        stage('Install Dependencies'){
+            sh 'npm install'
+        }
+        stage('Build Project'){
+            sh 'npm run build'
+        }
+    }
+    stage('Build tar file'){
+        sh "tar -zcvf ${applicationName}.tar.gz build package*.json"
+    }
+    stage("Deploy"){
+        sh label: 'Deliver', script: './scripts/deliver.sh'
+    }
+}
